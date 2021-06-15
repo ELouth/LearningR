@@ -1,6 +1,6 @@
 TODO: Add more to the title of your project here
 
-# LearningR: Into the madness
+# LearningR: Into the madness, learning awesomeness
 
 TODO: Give a brief description of what your project is about
 
@@ -16,7 +16,7 @@ The following folders contain:
 - `data/`: processed data for the project
 - `doc/`: any related document
 - `R/`: code for the project
-- 'data-raw/' : raw data that you don't touch
+- `data-raw/`: raw data that you don't touch
 
 # Installing project R package dependencies
 
