@@ -2,10 +2,7 @@ TODO: Add more to the title of your project here
 
 # LearningR: Into the madness, learning awesomeness
 
-TODO: Give a brief description of what your project is about
-
-This project is learning 
-#Random sentence to practise github push
+THis is for the R course and practising R
 
 # brief description
 
