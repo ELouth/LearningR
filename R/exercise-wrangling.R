@@ -1,6 +1,11 @@
 #Load packages
 source(here::here("R/package-loading.R"))
 
+
+
+# basics of wrangling -----------------------------------------------------
+
+
 #check column names
 colnames(NHANES)
 
@@ -66,7 +71,9 @@ nhanes_small %>%
 nhanes_small
 
 
-#exercise
+
+# exercise with selecting -------------------------------------------------
+
 
 nhanes_small %>%
     select(tot_chol, bp_sys_ave, poverty)
@@ -156,3 +163,46 @@ nhanes_modified <- nhanes_small %>%
            young_child = if_else(age < 6, "yes", "no"))
 
 nhanes_modified
+
+
+
+# Summarizing -------------------------------------------------------------
+
+#try getting the max of the bmi
+nhanes_small %>%
+    summarise(max_bmi = max(bmi))
+
+#oops output is NA. Why? you need to get rid of NAs
+nhanes_small %>%
+    summarise(max_bmi = max(bmi, na.rm = TRUE))
+
+# and you can do multiple stats at once
+nhanes_small %>%
+    summarise(max_bmi = max(bmi, na.rm = TRUE),
+              min_bmi = min(bmi, na.rm = TRUE))
+
+nhanes_small %>%
+    summarise(mean_weight = mean(weight, na.rm = TRUE), mean_age = mean(age))
+
+nhanes_small %>%
+    summarise(max_height = max(height, na.rm = TRUE),
+              min_height = min(height, na.rm = TRUE),
+              sum(is.na(height)))
+#is.na gives you true or false is NA
+
+nhanes_small %>%
+    summarize(med_age = median(age), med_phys_active_days = median(phys_active_days, na.rm = TRUE))
+
+
+#add using groupby
+
+nhanes_small %>%
+    group_by(!is.na(diabetes)) %>%
+    summarise(mean_age = mean(age, na.rm = TRUE), mean_bmi = mean(bmi, na.rm = TRUE))
+
+nhanes_small %>%
+    filter(!is.na(diabetes)) %>%
+    group_by(diabetes, sex) %>%
+    summarise(mean_age = mean(age, na.rm = TRUE),
+              mean_bmi = mean(bmi, na.rm = TRUE)) %>%
+    ungroup()
