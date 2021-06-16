@@ -206,3 +206,28 @@ nhanes_small %>%
     summarise(mean_age = mean(age, na.rm = TRUE),
               mean_bmi = mean(bmi, na.rm = TRUE)) %>%
     ungroup()
+
+
+
+# exercise with summary stats ---------------------------------------------
+
+nhanes_small %>%
+    filter(!is.na(diabetes)) %>%
+    group_by(sex,  diabetes) %>%
+    summarise(
+        mean_age = mean(age, na.rm = TRUE),
+        max_age = max(age, na.rm = TRUE),
+        median_age = median(age, na.rm = TRUE)
+    )
+
+nhanes_small %>%
+    filter(!is.na(diabetes)) %>%
+    group_by(sex,  diabetes) %>%
+    summarise(
+        mean_height = mean(height, na.rm = TRUE),
+        max_height = max(height, na.rm = TRUE),
+        median_height = median(height, na.rm = TRUE),
+        mean_weight = mean(weight, na.rm = TRUE),
+        max_weight = max(weight, na.rm = TRUE),
+        median_weight = median(weight, na.rm = TRUE)
+    )
