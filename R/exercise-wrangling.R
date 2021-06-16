@@ -36,3 +36,16 @@ nhanes_small <- select(NHANES, Age, Gender, Height,
                        BPSysAve, BPDiaAve, SmokeNow, Poverty)
 #view new dataframe
 nhanes_small
+
+# Rename all columns to snake case
+nhanes_small <- rename_with(nhanes_small, snakecase::to_snake_case)
+
+
+#rename a column
+rename(nhanes_small, sex = gender)
+
+nhanes_small
+
+#notice that did not rename anything. Because you didn't ASSIGN
+nhanes_small <- rename(nhanes_small, sex = gender)
+nhanes_small
