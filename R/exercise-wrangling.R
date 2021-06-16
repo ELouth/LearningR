@@ -243,3 +243,7 @@ NHANES %>%
     group_by(sex, age_class) %>%
     summarise(mean_bmi = mean(bmi), median_bmi = median(bmi)) %>%
     ungroup
+
+
+#saving data sets as an rda file
+usethis::use_data(nhanes_small, overwrite = TRUE)
