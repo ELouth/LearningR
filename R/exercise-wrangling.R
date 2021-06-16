@@ -20,6 +20,7 @@ select(NHANES, Age)
 select(NHANES, Age, Weight, BMI)
 
 #exclude a column
+
 select(NHANES, -HeadCirc)
 
 #see what sort of helpers you can use, then example using starting with letters BP
@@ -49,3 +50,18 @@ nhanes_small
 #notice that did not rename anything. Because you didn't ASSIGN
 nhanes_small <- rename(nhanes_small, sex = gender)
 nhanes_small
+
+
+##Pipe operators. you can say:
+colnames(nhanes_small)
+#OR:
+nhanes_small %>%
+    colnames()
+
+#Let's try selecting and renaming
+nhanes_small %>%
+    select(phys_active) %>%
+    rename(physically_active = phys_active)
+
+nhanes_small
+
