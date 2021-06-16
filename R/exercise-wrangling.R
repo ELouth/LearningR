@@ -231,3 +231,15 @@ nhanes_small %>%
         max_weight = max(weight, na.rm = TRUE),
         median_weight = median(weight, na.rm = TRUE)
     )
+
+# last exercise -----------------------------------------------------------
+
+NHANES %>%
+    rename_with(snakecase::to_snake_case) %>%
+    select(gender, age, bmi) %>%
+    filter(!is.na(gender) & !is.na(age) & !is.na(bmi)) %>%
+    rename(sex = gender) %>%
+    mutate(age_class = if_else(age < 50, "under 50", "over 50")) %>%
+    group_by(sex, age_class) %>%
+    summarise(mean_bmi = mean(bmi), median_bmi = median(bmi)) %>%
+    ungroup
