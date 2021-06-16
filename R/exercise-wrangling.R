@@ -80,3 +80,79 @@ nhanes_small %>%
 nhanes_small %>%
     select(phys_active_days, phys_active) %>%
     rename(days_phys_active = phys_active_days)
+
+#filtering vs selecting. Select works on columns whereas filter works on rows
+
+nhanes_small %>%
+    filter(sex == "female")
+
+nhanes_small %>%
+    filter(sex != "female")
+
+nhanes_small %>%
+    filter(bmi >= 25)
+
+#be careful with & and | (OR) operators. & is that both conditions are true. Whereas | is when one is true
+
+nhanes_small %>%
+    filter(bmi == 25 & sex == "female")
+#gave females with bmi of 25
+
+nhanes_small %>%
+    filter(bmi == 25 | sex == "female")
+#gives all the females with a BMI NOT 25 and males with bmi of 25.
+
+
+#arranging ascending or alphabetically or descending with (desc)
+nhanes_small %>%
+    arrange(age)
+
+nhanes_small %>%
+    arrange(sex)
+
+nhanes_small %>%
+    arrange(desc(age))
+
+nhanes_small %>%
+    arrange(sex, age)
+
+
+# Transform and add columns
+#e.g. put height in metres
+nhanes_small %>%
+    mutate(height = height / 100)
+
+#create a new column with the log height
+nhanes_small %>%
+    mutate(logged_height = log(height))
+
+nhanes_small %>%
+    mutate(height = height / 100,
+           logged_height = log(height))
+
+#we can also make a column of if_else. SO if the thing is true say "" else say ""
+
+nhanes_small %>%
+    mutate(highly_active = if_else(phys_active_days <= 5, "yes", "no")) %>%
+    select(highly_active, phys_active_days)
+
+#nothing happens if you don't assign!
+
+nhanes_update <- nhanes_small %>%
+    mutate(height = height / 100,
+           logged_height = log(height),
+           highly_active = if_else(phys_active_days >= 5, "Yes", "No"))
+
+nhanes_update
+
+
+# Exercie with filtering --------------------------------------------------
+
+nhanes_small %>%
+    filter(bmi >=20 & bmi <=40 & diabetes == "Yes")
+
+nhanes_modified <- nhanes_small %>%
+    mutate(mean_arterial_pressure = (((2*bp_dia_ave) + bp_sys_ave)/3),
+           young_child = if_else(age < 6, "yes", "no"))
+
+nhanes_modified
