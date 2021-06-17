@@ -2,8 +2,24 @@
 title: "Trying out R Markdown"
 author: "Emma Louise Louth"
 date: "16/06/2021"
-output: html_document
+output: 
+    html_document:
+        theme: sandstone
 ---
+- Emma Louise Louth
+- Department of Biomedicine
+- Aarhus University
+
+# Intro
+This entire document is a *practice* session for **learning R**
+
+# Methods and Results
+The methods explain **what** we did, the results are the *output*
+
+## Analysis
+We may have done an analysis
+
+
 ```{r setup}
 source(here::here("R/package-loading.R"))
 load(here::here("data/nhanes_small.rda"))
@@ -22,6 +38,16 @@ nhanes_small %>%
     rename("Diabetes Status" = diabetes, Sex = sex, "Mean Age" = mean_age, "Mean BMI" = mean_bmi) %>% 
     knitr::kable(caption = "Table 1. prettier mean age and BMI")
     
+
+```
+
+
+# Discussion
+Here we discuss the **pros** and *cons* of what we did
+
+
+```{r kitten-image, out.width="50%", out.height="50%", fig.cap="Sherlock: the cutest thing"}
+knitr::include_graphics(here::here("doc/images/Sherlock.jpg"))
 
 ```
 

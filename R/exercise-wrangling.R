@@ -247,3 +247,5 @@ NHANES %>%
 
 #saving data sets as an rda file
 usethis::use_data(nhanes_small, overwrite = TRUE)
+
+
